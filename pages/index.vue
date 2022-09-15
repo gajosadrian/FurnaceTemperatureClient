@@ -1,9 +1,11 @@
 <template>
-  <Tutorial />
+  <b-container>
+    <FurnaceTemperature />
+  </b-container>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage',
+  name: 'IndexPage'
 }
 </script>
