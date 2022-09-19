@@ -113,7 +113,9 @@ export default {
       name: process.env.APP_NAME,
       lang: 'pl'
     },
-    icon: false
+    icon: {
+      purpose: 'any'
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
