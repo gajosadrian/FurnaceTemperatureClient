@@ -111,6 +111,7 @@ export default {
     },
     manifest: {
       name: process.env.APP_NAME,
+      short_name: process.env.APP_NAME,
       lang: 'pl'
     },
     icon: {
