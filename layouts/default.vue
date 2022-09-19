@@ -1,11 +1,6 @@
 <template>
-  <div>
-    <b-navbar
-      toggleable="lg"
-      type="dark"
-      fixed="bottom"
-      :variant="$nuxt.isOffline ? 'danger' : 'primary'"
-    >
+  <div class="text-white-80">
+    <b-navbar toggleable="lg" type="dark" fixed="bottom" class="bg-dark-40">
       <b-navbar-brand to="/">{{ $config.appName }}</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse" />
@@ -34,9 +29,26 @@
 <script>
 export default {
   name: 'DefaultLayout',
+  computed: {
+    backgroundColor() {
+      return this.$store.getters['furnace/backgroundColor']
+    }
+  },
+  watch: {
+    backgroundColor() {
+      this.setBackgroundColor()
+    }
+  },
+  mounted() {
+    this.setBackgroundColor()
+  },
   methods: {
     async logout() {
       await this.$auth.logout()
+    },
+    setBackgroundColor() {
+      document.querySelector('body').style.backgroundColor =
+        this.backgroundColor
     }
   }
 }
