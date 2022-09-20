@@ -9,7 +9,10 @@ export const FurnaceMode = {
 export const state = () => ({
   temperature: null,
   mode: null,
-  startTime: null
+  startTime: null,
+  fetching: {
+    temperature: false
+  }
 })
 
 export const getters = {
@@ -34,14 +37,20 @@ export const mutations = {
   },
   setStartTime(state, { startTime }) {
     state.startTime = startTime
+  },
+  setFetching(state, [variable, fetching]) {
+    state.fetching[variable] = fetching
   }
 }
 
 export const actions = {
   async fetchTemperature({ commit }) {
+    commit('setFetching', ['temperature', true])
+
     const temperature = await this.$axios.$get('/api/furnace/temperature')
 
     commit('setTemperature', { temperature })
+    commit('setFetching', ['temperature', false])
 
     return temperature
   },
